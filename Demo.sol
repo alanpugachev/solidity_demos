@@ -12,11 +12,22 @@ contract DemoContract {
         owner = msg.sender;
     }
 
-    function pay() public payable {
-        payments[msg.sender] = msg.value;
+
+
+    // modifiers
+    modifier basicCheckModifier(address _to) {
+        require(msg.sender == owner, "You are not an owner");
+        require(_to != address(0), "Incorrect address");
+        _;
     }
 
-    function withdrawAll(address payable _to) external {
+
+
+    // functions
+    function pay() public payable {
+    }
+
+    function withdrawAll(address payable _to) external basicCheckModifier(_to) {
         _to.transfer(address(this).balance);
     }
 }
