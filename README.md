@@ -1,1 +1,1 @@
-# solifity_demos
+# Solidity demos
